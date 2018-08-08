@@ -1,0 +1,69 @@
+ng-sidebar {
+    font-size: 15px;
+    text-align: center;
+    transition: 0.5s;
+    background: -webkit-linear-gradient(white  , black    );
+    background: -o-linear-gradient(white  , black    );
+    background: linear-gradient(white  , black     );
+    background-attachment:fixed;
+    button {
+        height: 50px;
+        width: 200px;
+        color: white;
+        background-color: black;
+        border: 0px;
+        cursor: pointer;
+    }
+    i {
+        float: right;
+        padding-right: 10px;
+    }
+    p {
+        height: 50px;
+        padding-top: 20px; 
+        transition: 0.5s;     
+        cursor: pointer;
+    }
+    .noactP {
+        background-color: white;
+        color: black;
+        padding-top: 20px; 
+        padding-bottom: 40px; 
+        transition: 0.5s;    
+        border: 2px solid #EEEEEE;
+        margin-bottom: 0px;
+        cursor: pointer;
+    }
+    p:hover {
+        color: rgb(45, 247, 27);
+    }
+}
+.content {
+    padding-left: 300px;
+    background-color: #EEEEEE;
+    height: calc(100vh - 100px);
+    box-sizing: border-box;
+    background: -webkit-linear-gradient(white  , black    );
+    background: -o-linear-gradient(white  , black    );
+    background: linear-gradient(white  , black     );
+    background-attachment:fixed;
+}
+.activeP {
+    // color: white;
+    color: rgb(4, 160, 4);
+    background: -webkit-linear-gradient(white  , black    );
+    background: -o-linear-gradient(white  , black    );
+    background: linear-gradient(white  , black     );
+    background-attachment:fixed;
+    padding-top: 20px;  
+    padding-bottom: 40px;  
+    transition: 0.5s;    
+    border-top: 1px solid #EEEEEE;
+    margin-bottom: 0px;
+    cursor: pointer;
+}
+@media only screen and (max-width: 1440px) {
+    .content {
+        padding-left: 0px;
+    }
+}

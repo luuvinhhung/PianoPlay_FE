@@ -1,0 +1,88 @@
+<div class="container" style="border-bottom: 0px; height: 50px;margin-top: 0px;">
+    <div class="row">
+        <!-- input search -->
+        <div class="input-group col-md-8">
+            <div class="input-group-btn">
+                <button class="btn btn-default searchBtn" (click)="searchAccount(keyw)">
+                    <i class="fas fa-search "></i>
+                </button>
+            </div>
+            <input placeholder=" Search..." [(ngModel)]="keyw" (keyup.enter)="searchAccount(keyw)">
+        </div>
+        <!-- button add -->
+        <div>
+            <button *ngIf='isAd' class="btn btn-default addBtn" (click)="openAddDialog()">
+                <span>ADD </span>
+                <i class="fas fa-plus"></i>
+            </button>
+            <button *ngIf='!isAd' disabled class="btn btn-default" style="width: 90px; background-color: #e9e9e9; color: black; border: 1px solid black; cursor: not-allowed;">
+                <span>ADD </span>
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="table">
+    <!-- column header -->
+    <div class="container" style="font-size: 25px">
+        <div class="row">
+            <div class="col-md-1">USER</div>
+            <div class="col-md-2">FULLNAME</div>
+            <div class="col-md-3">EMAIL</div>
+            <div class="col-md-2">PHONE</div>
+            <div class="col-md-2 settingIcon">
+                <i class="fas fa-cog"></i>
+            </div>
+        </div>
+    </div>
+    <!-- column data -->
+    <div class="container main" *ngFor="let account of accounts">
+        <div class="row">
+            <div class="col-md-1">{{ account.username }}</div>
+            <div class="col-md-2">{{ account.fullName | uppercase }}</div>
+            <div class="col-md-3">{{ account.email }}</div>
+            <div class="col-md-2">{{ account.phoneNumber }}</div>
+            <!-- edit and delete button -->
+            <div class="col-md-2 action">
+                <button *ngIf='!isAd' class="disableBtn btn btn-default" style="width: 50px; cursor: not-allowed">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button *ngIf='isAd' class="editBtn btn btn-default" (click)="openEditAccountDialog(account)" style="max-width: 90px;">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <!-- delete button -->
+                <button *ngIf='!isAd' class="btn btn-danger disableBtn" style="width: 50px;">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+                <button *ngIf='isAd' class="delBtn btn btn-default" (click)='openRemoveAccountDialog(account)' style="max-width: 90px;">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <ul class="pagination">
+                <li class="page-item">
+                    <button *ngIf="page !== 1" class="page-link" (click)="changePage(-1)">Previous</button>
+                    <button *ngIf="page === 1" disabled class="page-link">Previous</button>
+                </li>
+
+                <li class="page-item">
+                    <button *ngIf="!disableNextPageBtn" class="page-link" (click)="changePage(1)">Next</button>
+                    <button *ngIf="disableNextPageBtn" disabled class="page-link">Next</button>
+                </li>
+            </ul>
+        </div>
+        <!-- page size -->
+        <mat-select class="col-md-1" [(value)]="pageSize" placeholder="Show:">
+            <mat-option value=3 (click)="changePageSize()">
+                3
+            </mat-option>
+            <mat-option value=5 (click)="changePageSize()">
+                5
+            </mat-option>
+        </mat-select>
+    </div>
+</div>

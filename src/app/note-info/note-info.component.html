@@ -1,0 +1,22 @@
+<div class="header-secondary">{{title}}</div>
+<div class="content">
+  <div class="note-card" *ngIf="currentNote" (click)="playNote(currentNote)">
+      <span class="name">{{currentNote.fullname}}</span>
+      <span class="octave">OCTAVE {{currentNote.octave}}</span>
+  </div>
+  <br>
+  <div class="note-card-or" *ngIf="alternateNote">
+    <span> OR </span>
+  </div>
+  <br>
+  <div class="note-card" *ngIf="alternateNote" (click)="playNote(alternateNote)">
+    <span class="name">{{alternateNote.fullname}}</span>
+    <span class="octave">OCTAVE {{alternateNote.octave}}</span>
+  </div>
+  <div *ngIf="!currentNote">
+    <div>
+      <p>Press a key on the<br> <b>piano below</b></p>
+    </div>
+  </div>
+</div>
+

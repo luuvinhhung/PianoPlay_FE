@@ -1,0 +1,48 @@
+<div class="form">
+    <h1 mat-dialog-title>Edit Account</h1>
+    <mat-dialog-content>
+        <p class="groupTitle">Account Details</p>
+        <p>USERNAME: {{ account.username }}</p>
+        <br>
+        <mat-form-field>
+            <input matInput type="password" [(ngModel)]="account.password" placeholder="New Password*">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="password" [(ngModel)]="repeatPassword" placeholder="Confirm Password*">
+        </mat-form-field>
+        <p class="groupTitle">Personal Details</p>
+        <!-- name -->
+        <div *ngIf="isUser">
+            <mat-form-field>
+                <input matInput [(ngModel)]="account.fullName" placeholder="Full name*">
+            </mat-form-field>
+        </div>
+        <p *ngIf="isAd">Name: {{ account.fullName }}</p>
+        <!-- <br *ngIf="isUser"> -->
+        <div [ngClass]="isUser?'row':'mailInfo'">
+            <!-- email -->
+            <div *ngIf="isUser">
+                <mat-form-field>
+                    <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher" placeholder="Email*">
+                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                        Please enter a valid email address
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <p *ngIf="isAd">Email: {{ account.email }}</p>
+            <!-- phone -->
+            <div *ngIf="isUser">
+                <mat-form-field>
+                    <input matInput [(ngModel)]="account.phoneNumber" placeholder="Phone number*">
+                </mat-form-field>
+            </div>
+            <p *ngIf="isAd">Phone: {{ account.phoneNumber }}</p>
+        </div>
+    </mat-dialog-content>
+    <div class="actionBtn">
+        <mat-dialog-actions>
+            <button mat-button (click)="editAcc()" style="color: #007BFF">Confirm</button>
+            <button mat-button type="button" mat-dialog-close>Cancel</button>
+        </mat-dialog-actions>
+    </div>
+</div>

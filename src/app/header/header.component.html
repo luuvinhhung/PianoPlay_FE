@@ -1,0 +1,17 @@
+<header>
+  <div class="logo">
+    <img [routerLink]="['/home']" class="logoImg" src="assets/logo.png" alt="" />
+  </div>
+  <span>PIANOPLAY</span>
+  <div class="menu">
+    <button *ngIf='!access' routerLink="/login" class="loginBtn btn btn-primary">Login</button>
+
+    <button *ngIf='access' class="userBtn btn btn-primary" matTooltip="Click to see action" mat-button [matMenuTriggerFor]="menu">
+      <i class="fas fa-user-alt"></i>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button class="menuBtn" (click)='openEditAccountDialog()' mat-menu-item>Your Profile</button>
+      <button class="menuBtn" (click)='logout()' mat-menu-item>Logout</button>
+    </mat-menu>
+  </div>
+</header>

@@ -1,0 +1,91 @@
+<div class="sideContent">
+    <div class="noteInfo">
+        <app-note-info></app-note-info>
+    </div>
+    <div class="panel">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" [(ngModel)]="keyw" (keyup.enter)="searchSong(keyw)" placeholder="Search...">
+            <div class="input-group-append">
+                <button class="searchBtn btn btn-outline-secondary" (click)="searchSong(keyw)" type="button">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="notation-component">
+    <app-notation></app-notation>
+</div>
+
+<div class="container" style="border-bottom: 0px; height: 50px;margin-top: 0px; padding-top: 400px;">
+</div>
+
+<div class="table">
+    <!-- column header -->
+    <div class="container" style="font-size: 25px">
+        <div class="row">
+            <div class="col-md-1">ID</div>
+            <div class="col-md-4">NAME</div>
+            <div class="col-md-2">CreatedDate</div>
+            <div class="col-md-1"></div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+    <!-- column data -->
+    <div class="container main" *ngFor="let song of songs">
+        <div class="row">
+            <div class="col-md-1">{{ song.Id }}</div>
+            <div class="col-md-4">{{ song.Name | uppercase }}<button class="editBtn" (click)="songEditChoose(song)" data-toggle="modal" data-target="#mySaveModal"><i class="fas fa-edit"></i></button></div>
+            <div class="col-md-2">{{ song.CreatedDate | date:'mediumDate' }}</div>
+            <div class="col-md-1">
+                <button class="playBtn" (click)="play(song)" matTooltip="Click to play this song">
+                    <i class="far fa-play-circle fa-2x"></i>
+                </button>
+            </div>
+            <!-- delete button -->
+            <div class="col-md-2 action">
+                <!-- delete button -->
+                <button class="delBtn btn btn-default" (click)='openRemoveSongDialog(song)' style="max-width: 90px;">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-7">
+            <ul class="pagination">
+                <li class="page-item">
+                    <button *ngIf="page !== 1" class="page-link" (click)="changePage(-1)">Previous</button>
+                    <button *ngIf="page === 1" disabled class="page-link">Previous</button>
+                </li>
+
+                <li class="page-item">
+                    <button *ngIf="!disableNextPageBtn" class="page-link" (click)="changePage(1)">Next</button>
+                    <button *ngIf="disableNextPageBtn" disabled class="page-link">Next</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="mySaveModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Save this song</h4>
+                </div>
+                <div class="modal-body">
+                  <mat-dialog-content>
+                    <mat-form-field style="width: 100%">
+                      <input matInput [(ngModel)]="songEdit.Name" placeholder="Enter New Name">
+                    </mat-form-field>
+                  </mat-dialog-content>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="editSong()">Confirm</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+</div>

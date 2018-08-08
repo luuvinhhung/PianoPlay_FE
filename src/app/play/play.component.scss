@@ -1,0 +1,57 @@
+#container {
+  width: 1128px;
+  background-color: black;
+}
+.sideContent {
+  float: left;
+  width: 200px;
+}
+.noteInfo {
+  width: 200px;
+  height: 342px;
+  border: 1px black solid;
+  text-align: center;
+  background-color: white;
+}
+.panel {
+  height: 50px;
+  padding: 0px;
+  .saveBtn {
+    width: 95px;
+    height: 45px;
+    margin-right: 10px;
+  }
+  .disableBtn {
+    background-color: #DDDDDD;
+    color: rgb(73, 71, 71);
+    cursor: not-allowed;
+    border: 1px solid black;
+    margin-right: 10px;
+    width: 95px;
+    height: 45px;
+}
+  .playBtn {
+    width: 95px;
+    height: 45px;
+    color: green;
+    background-color: white;
+    border: 1px solid green;
+  }
+  .playBtn:hover {
+    color: rgb(41, 231, 41);
+  }
+}
+#notation-component {
+    float: right;
+    width: 900px;
+    height: 392px;
+    background:#fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 0 0 20px 0;
+}
+#keyboard-component {
+    clear: both;
+    width: 1128px;
+    margin: 0;
+}
+  

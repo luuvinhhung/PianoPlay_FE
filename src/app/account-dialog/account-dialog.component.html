@@ -1,0 +1,40 @@
+<div class="form">
+    <h1 mat-dialog-title>
+        <i class="fas fa-check"></i> Registration</h1>
+    <mat-dialog-content>
+        <p class="groupTitle">Account Details</p>
+        <mat-form-field>
+            <input matInput [(ngModel)]="accountAdding.username" placeholder="User name*">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput type="password" [(ngModel)]="accountAdding.password" placeholder="Password*">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="password" [(ngModel)]="repeatPassword" placeholder="Confirm Password*">
+        </mat-form-field>
+        <p class="groupTitle">Personal Details</p>
+        <mat-form-field>
+            <input matInput [(ngModel)]="accountAdding.fullName" placeholder="Full name*">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher" placeholder="Email*">
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                Please enter a valid email address
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="phone" [(ngModel)]="accountAdding.phoneNumber" placeholder="Phone number*">
+        </mat-form-field>
+    </mat-dialog-content>
+    <p style="color: red">* obligatory fields</p>
+    <div class="actionBtn">
+        <mat-dialog-actions>
+            <button mat-button (click)="addAccount(accountAdding)" style="background-color: #007BFF; color: white">Register
+                <i class="fas fa-check"></i>
+            </button>
+            <button mat-button type="button" mat-dialog-close>Cancel</button>
+        </mat-dialog-actions>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+.dialog {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}

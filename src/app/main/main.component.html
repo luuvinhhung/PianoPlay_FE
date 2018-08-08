@@ -1,0 +1,29 @@
+<app-header></app-header>
+<ng-sidebar-container style="height: 100vh;">
+
+  <!-- A sidebar -->
+  <ng-sidebar [(opened)]="_opened" [(dock)]="_docked" [(dockedSize)]="_dockedSize" [(mode)]="_mode">
+    <button matTooltip="Click to toggle Sidebar" [matTooltipPosition]='position'
+    (click)="_toggleSidebar()">SIDEBAR
+      <i [ngClass]="_opened?'fas fa-arrow-circle-left fa-2x':'fas fa-arrow-circle-right fa-2x'"></i>
+    </button>
+    <p [ngClass]="activePlay?'activeP':'noactP'" (click)='play()'>PLAY
+      <i class="fas fa-play fa-2x"></i>
+    </p>
+    <p *ngIf="!isAd" [ngClass]="activeGuide?'activeP':'noactP'" (click)='guide()'>GUIDE
+      <i class="fas fa-book-open fa-2x"></i>
+    </p>
+    <p *ngIf="!isAd"  [ngClass]="activeList?'activeP':'noactP'" (click)='list()'>LIST
+      <i class="fas fa-list-ol fa-2x"></i>
+    </p>
+    <p *ngIf="isAd" [ngClass]="activeAcc?'activeP':'noactP'" (click)='account()'>ACCOUNT
+      <i class="fas fa-user-friends fa-2x"></i>
+    </p>
+  </ng-sidebar>
+
+  <!-- Page content -->
+  <div ng-sidebar-content class="content">
+    <router-outlet></router-outlet>
+  </div>
+
+</ng-sidebar-container>

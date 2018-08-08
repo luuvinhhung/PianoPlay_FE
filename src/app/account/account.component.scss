@@ -1,0 +1,164 @@
+$color-logo : rgb(4, 160, 4);
+h1 {
+    text-align: center;
+}
+input {
+    outline: none;
+    border-radius: 5px;
+}
+mat-form-field {
+    margin: 10px;
+}
+.input-group {
+    float: left;
+    input {
+        outline: none;
+        width: 0;
+        height: 40px;
+        transition: 0.5s;
+        border: none;
+        text-align: center;
+    }
+    .searchBtn {
+        outline: none; 
+        height: 40px;
+        color: black;
+        width: 60px;
+        border-radius: 20px;
+        background-color: white;
+    } 
+    .searchBtn:hover{
+        cursor: pointer;
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+        -moz-box-shadow:0px 0px 6px rgba(0, 0, 0, 10);
+        -webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+    }  
+}
+.input-group:hover input {
+    border-radius: 5px;
+    border-bottom: rgb(4, 160, 4) 1px solid; 
+    width: 300px;
+    .searchBtn {
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+        -moz-box-shadow:0px 0px 6px rgba(0, 0, 0, 10);
+        -webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+    }
+}
+mat-select {
+    padding-top: 10px;
+    max-width: 100px;
+    margin-right: 10px;
+}
+.show {
+    margin-bottom: 0px;
+}
+.addBtn {
+    border: black 1px solid; 
+    color: black;
+    width: 85px;
+    border-radius: 12px;
+    background-color: white;
+    font-weight: bold;
+    transition: 0.3s;
+    margin-left: 22px;
+    cursor: pointer;
+}
+.addBtn:hover {
+    color: rgb(32, 32, 32);
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+    -moz-box-shadow:0px 0px 6px rgba(0, 0, 0, 10);
+    -webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 10);
+}
+.table {
+    background-color: white;
+    width: 1180px;
+    border-radius: 10px;
+    border: 1px solid #eeeeee;
+    box-shadow: 5px 5px 5px rgb(70, 67, 67);
+    -moz-box-shadow: 5px 5px 5px rgb(70, 67, 67);
+    -webkit-box-shadow: 5px 5px 5px rgb(70, 67, 67);
+    .pageBtn {
+        outline: none;
+        width: 60px;
+        background-color: #eeeeee;
+        border-radius: 5px;
+        margin: 5px;
+        cursor: pointer;
+    }
+    .pageBtn:hover {
+        background-color: white;
+        border: 1px solid black;
+    }
+}
+.container {
+    font-size: 15px;
+    height: 70px;
+    margin: 10px;
+    padding-top: 10px;
+    border-bottom: 1px #EEEEEE solid;
+    transition: 0.5s;
+    cursor: pointer;
+    .disableBtn {
+        width: 50px;
+        background-color: #DDDDDD;
+        color: rgb(73, 71, 71);
+        cursor: not-allowed;
+        border: 1px solid black;
+        margin-right: 5px;
+    }
+    .settingIcon {
+        color: black;
+        i {
+            padding-left: 40px;
+        }
+    }
+    .editBtn {
+        height: 40px;
+        width: 50px;
+        margin-right: 10px;
+        transition: 0.5s;
+        cursor: pointer;
+    }
+    .delBtn {
+        color: white;
+        height: 40px;
+        width: 50px;
+        transition: 0.5s;
+        background-color: #F44336;
+        cursor: pointer;
+    }
+    .editBtn:hover {
+        background-color: white;
+        border: 1px solid black;
+    }
+    .delBtn:hover {
+        background-color: red;
+        border: 1px solid white;
+    }
+    .closeBtn {
+        background-color: #F44336;
+        color: white;
+    }
+    .modal-body {
+        margin-bottom: 10px;
+    }
+}
+.main {
+    background-color: white;
+}
+.container.main:hover {
+    font-size: 17px;
+    box-shadow: 5px 5px 5px rgb(70, 67, 67);
+    -moz-box-shadow: 5px 5px 5px rgb(70, 67, 67);
+    -webkit-box-shadow: 5px 5px 5px rgb(70, 67, 67);
+}
+.pagination {
+    padding-left: 10px;
+    li {
+        border-radius: 5px; 
+        button:disabled {
+            background-color: #E1E1E1;
+            color: #8D8D8D;
+        }
+    }
+}

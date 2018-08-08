@@ -1,0 +1,29 @@
+<div class="background">
+  <img src="../../assets/login_background.jpg" alt="">
+</div>
+
+<div class="transbox">
+  <h2>
+    <i class="fas fa-lock"></i> LOGIN</h2>
+  <section>
+    <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="passwordInput">
+        <input type="text" matInput placeholder="User name" formControlName="username">
+        <mat-hint>Enter a username.</mat-hint>
+        <mat-error>Invalid or missing username.</mat-error>
+      </mat-form-field>
+     
+      <mat-form-field class="passwordInput">
+        <input type="password" matInput placeholder="Your password" formControlName="password">
+        <mat-hint>Enter your password.</mat-hint>
+        <mat-error>Missing password.</mat-error>
+      </mat-form-field>
+      <br>
+      <button type="submit" mat-raised-button color="primary">Login</button>
+      <p class="signup">Not a member?
+        <a class="SignupBtn" (click)="openAddDialog()">Sign Up</a>
+      </p>
+    </form>
+    <button class="demoBtn" [routerLink]="['/home']">PLAY WITHOUT LOGIN</button>
+  </section>
+</div>
