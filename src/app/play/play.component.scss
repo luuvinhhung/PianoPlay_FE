@@ -13,6 +13,15 @@
   text-align: center;
   background-color: white;
 }
+.disableBtn {
+  background-color: #DDDDDD;
+  color: rgb(73, 71, 71);
+  cursor: not-allowed;
+  border: 1px solid black;
+  margin-right: 10px;
+  width: 95px;
+  height: 43px;
+}
 .panel {
   height: 50px;
   padding: 0px;
@@ -21,15 +30,6 @@
     height: 45px;
     margin-right: 10px;
   }
-  .disableBtn {
-    background-color: #DDDDDD;
-    color: rgb(73, 71, 71);
-    cursor: not-allowed;
-    border: 1px solid black;
-    margin-right: 10px;
-    width: 95px;
-    height: 45px;
-}
   .playBtn {
     width: 95px;
     height: 45px;

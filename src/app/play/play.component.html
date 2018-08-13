@@ -3,13 +3,14 @@
     <div class="noteInfo">
       <app-note-info></app-note-info>
     </div>
-
+    
     <div class="panel">
       <button *ngIf='access' class="saveBtn btn btn-primary" data-toggle="modal" data-target="#mySaveModal">SAVE</button>
       <button *ngIf='!access' matTooltip="Please LOGIN or SIGNUP to save" class="disableBtn btn btn-primary" data-toggle="modal" data-target="#mySaveModal">SAVE</button>
       <button class="playBtn btn btn-primary" (click)="play()">
         <i class="far fa-play-circle fa-2x"></i>
       </button>
+      
     </div>
   </div>
 
@@ -30,16 +31,17 @@
         </div>
         <div class="modal-body">
           <mat-dialog-content>
-            <div *ngFor="let song of songs">
-              <p>{{ song.Id }}</p>
-            </div>
             <mat-form-field style="width: 100%">
               <input matInput [(ngModel)]="songAdding.Name" placeholder="Enter Name">
             </mat-form-field>
           </mat-dialog-content>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addSong()">Confirm</button>
+          <button *ngIf="songAdding.Name !== ''" type="button" class="disableBtn btn btn-primary" data-dismiss="modal"  (click)="QuickSave()">QuickSave</button>
+          <button *ngIf="songAdding.Name === ''" type="button" class="btn btn-primary" data-dismiss="modal"  (click)="QuickSave()">QuickSave</button>
+          
+          <button *ngIf="saved" type="button" class="disableBtn btn btn-primary" data-dismiss="modal" (click)="addSong()">Confirm</button>
+          <button *ngIf="!saved" type="button" class="btn btn-primary" data-dismiss="modal">Confirm</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>

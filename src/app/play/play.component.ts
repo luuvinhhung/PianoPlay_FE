@@ -6,6 +6,7 @@ import { PianoNote } from './../core/piano-note';
 import { PianoService } from './../core/piano.service';
 import { Component, OnInit } from '@angular/core';
 import decode from 'jwt-decode';
+import { MatDialog } from '../../../node_modules/@angular/material';
 
 @Component({
   selector: 'app-play',
@@ -14,6 +15,7 @@ import decode from 'jwt-decode';
 })
 export class PlayComponent implements OnInit {
   token = localStorage.getItem('currentUser');
+  saved: Boolean = false;
   access: Boolean = false;
   UserId: string;
   songs: ISong[];
@@ -29,6 +31,7 @@ export class PlayComponent implements OnInit {
   };
   private playingNote = '16161816212016161816232116162825212018262625212321';
   constructor(
+    private dialog: MatDialog,
     private _notationService: NotationService,
     private toastr: ToastrService,
     private pianoService: PianoService,
@@ -58,36 +61,33 @@ export class PlayComponent implements OnInit {
     // console.log(this.playedNote);
   }
   addSong() {
-    if (!this.songAdding.CreatedDate) {
-      this.songAdding.UserId = this.UserId;
-      this.CreatedDate = new Date().toString();
-      this.songAdding.CreatedDate = this.CreatedDate.toString();
-      if (this.songAdding.Name !== '' && this.songAdding.KeyIds !== '') {
-        this._songService.createSong(this.songAdding);
-        console.log('new');
-        localStorage.setItem('currentKeyIds', this.songAdding.KeyIds);
-        // Toastr
-        this.toastr.success('Song Added!', 'Success!');
-      } else if (this.songAdding.Name === '') {
-        this.toastr.error('Name is required', 'Error!', {
-          timeOut: 3000,
-        });
-      } else {
-        this.toastr.error('Please press some key', 'Error!', {
-          timeOut: 3000,
-        });
-      }
-    } else {
-      this._songService.getSongs();
-      console.log(this.songAdding.Name);
-      const currentKeyIds = localStorage.getItem('currentKeyIds');
-      this._songService.songs.subscribe(song => {
-        this.songs = song;
-        });
-        this.songEdit = this.songs.find(em => em.KeyIds.includes(currentKeyIds));
-      console.log(this.songEdit.Id);
-      this._songService.editSong(this.songEdit);
+    const currentKeyIds = localStorage.getItem('currentKeyIds');
+    if (currentKeyIds) {
+      this.songAdding.KeyIds = currentKeyIds + this.songAdding.KeyIds;
     }
+    this.songAdding.UserId = this.UserId;
+    this.CreatedDate = new Date().toString();
+    this.songAdding.CreatedDate = this.CreatedDate.toString();
+    if (this.songAdding.Name !== '' && this.songAdding.KeyIds !== '') {
+      // this._songService.createSong(this.songAdding);
+      localStorage.removeItem('currentKeyIds');
+      this.saved = true;
+      // Toastr
+      this.toastr.success('Song Added!', 'Success!');
+    } else if (this.songAdding.Name === '') {
+      this.toastr.error('Name is required', 'Error!', {
+        timeOut: 3000,
+      });
+    } else {
+      this.toastr.error('Please press some key', 'Error!', {
+        timeOut: 3000,
+      });
+    }
+    // this._songService.editSong(this.songEdit);
+  }
+  QuickSave() {
+    localStorage.setItem('currentKeyIds', this.songAdding.KeyIds);
+    this.songAdding.KeyIds = '';
   }
   // update
   async play() {
