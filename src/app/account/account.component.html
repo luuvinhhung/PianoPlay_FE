@@ -37,7 +37,7 @@
         </div>
     </div>
     <!-- column data -->
-    <div class="container main" *ngFor="let account of accounts">
+    <div class="container main" *ngFor="let account of accounts | paginate: { itemsPerPage: 5, currentPage: p }">
         <div class="row">
             <div class="col-md-1">{{ account.username }}</div>
             <div class="col-md-2">{{ account.fullName | uppercase }}</div>
@@ -61,28 +61,5 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-8">
-            <ul class="pagination">
-                <li class="page-item">
-                    <button *ngIf="page !== 1" class="page-link" (click)="changePage(-1)">Previous</button>
-                    <button *ngIf="page === 1" disabled class="page-link">Previous</button>
-                </li>
-
-                <li class="page-item">
-                    <button *ngIf="!disableNextPageBtn" class="page-link" (click)="changePage(1)">Next</button>
-                    <button *ngIf="disableNextPageBtn" disabled class="page-link">Next</button>
-                </li>
-            </ul>
-        </div>
-        <!-- page size -->
-        <mat-select class="col-md-1" [(value)]="pageSize" placeholder="Show:">
-            <mat-option value=3 (click)="changePageSize()">
-                3
-            </mat-option>
-            <mat-option value=5 (click)="changePageSize()">
-                5
-            </mat-option>
-        </mat-select>
-    </div>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </div>

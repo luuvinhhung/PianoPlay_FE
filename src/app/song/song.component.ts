@@ -1,3 +1,4 @@
+import { NotationService } from './../notation/notation.service';
 import { RemoveSongComponent } from './../remove-song/remove-song.component';
 import { ToastrService } from 'ngx-toastr';
 import { PianoService } from './../core/piano.service';
@@ -37,6 +38,7 @@ export class SongComponent implements OnInit {
     UserId: string;
     // SongDialogRef: MatDialogRef<SongDialogComponent>;
     constructor(
+        private _notationService: NotationService,
         private toastr: ToastrService,
         private pianoService: PianoService,
         private _songService: SongService,
@@ -44,10 +46,11 @@ export class SongComponent implements OnInit {
         private dialog: MatDialog
     ) { }
 
-    ngOnInit() {if (this.token) {
-        const tokenPayload = decode(this.token);
-        this.UserId = tokenPayload.nameid;
-    }
+    ngOnInit() {
+        if (this.token) {
+            const tokenPayload = decode(this.token);
+            this.UserId = tokenPayload.nameid;
+        }
         this._songService.getSongs();
         this._songService.songs.subscribe(song => {
             this.songs = song.filter(em => em.UserId.toLowerCase().includes(this.UserId.toLowerCase()));
@@ -56,6 +59,7 @@ export class SongComponent implements OnInit {
         if (this.token) {
             this.access = false;
         }
+        this._notationService.clear();
     }
 
     searchSong(key: string) {
@@ -80,10 +84,9 @@ export class SongComponent implements OnInit {
     }
     songEditChoose(songEditIn: ISong) {
         this.songEdit = songEditIn;
-        // console.log(this.songEdit.Id);
     }
     editSong() {
-        // console.log(this.songEdit.Name);
+        // console.log(this.songEdit.Id);
         this._songService.editSong(this.songEdit);
         this.toastr.success('Song name changed to ' + this.songEdit.Name, 'Success!');
     }
@@ -95,23 +98,4 @@ export class SongComponent implements OnInit {
         });
     }
 
-    // Phân trang
-    totalPages() {
-        this._songService.getSongs();
-        this._songService.songs.subscribe(ems => {
-            this.songs = ems;
-        });
-    }
-
-    changePage(move) {
-        this.page = this.page + move;
-        this.totalPages();
-        if (this.page < 1) {
-            this.page = 1;
-        } else if (this.songs.length < 5) {
-            this.disabledNextPageBtn = true;
-        } else {
-            this.disabledNextPageBtn = false;
-        }
-    }
 }

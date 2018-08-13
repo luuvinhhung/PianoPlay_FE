@@ -1,3 +1,4 @@
+import { NotationService } from './../notation/notation.service';
 import { AccountService } from './../core/account.service';
 import { EditAccountComponent } from './../edit-account/edit-account.component';
 import { IAccount } from './../core/IAccount';
@@ -25,6 +26,7 @@ export class HeaderComponent implements OnInit {
   };
   chooseAccount: IAccount[];
   constructor(
+    private _notationService: NotationService,
     private _accountService: AccountService,
     private dialog: MatDialog,
     private toastr: ToastrService,
@@ -37,16 +39,21 @@ export class HeaderComponent implements OnInit {
       const tokenPayload = decode(this.currentUser);
       this.UserId = tokenPayload.nameid;
       this.access = true;
+      this._accountService.getAccounts();
+      this._accountService.accounts.subscribe(ems => {
+        this.editAccount = ems.find(em => em.Id.toLowerCase().includes(this.UserId.toLowerCase()));
+        this.chooseAccount = ems;
+      });
     }
-    this._accountService.getAccounts();
-    this._accountService.accounts.subscribe(ems => {
-      this.editAccount = ems.find(em => em.Id.toLowerCase().includes(this.UserId.toLowerCase()));
-      this.chooseAccount = ems;
-    });
     // this.editAccount = this.accounts.find(em => em.Id.toLowerCase().includes(this.UserId.toLowerCase()));
   }
   openEditAccountDialog() {
     // console.log(this.editAccount.Id);
+    this._accountService.getAccounts();
+      this._accountService.accounts.subscribe(ems => {
+        this.editAccount = ems.find(em => em.Id.toLowerCase().includes(this.UserId.toLowerCase()));
+        this.chooseAccount = ems;
+      });
     console.log(this.editAccount.Id);
     const dialogRef = this.dialog.open(EditAccountComponent, {
       width: '500px',
@@ -56,6 +63,7 @@ export class HeaderComponent implements OnInit {
   }
   logout() {
     this._authService.logout();
+    this._notationService.clear();
     this.router.navigate(['../login']);
     this.toastr.success('Good bye!', 'Logout Success!');
   }

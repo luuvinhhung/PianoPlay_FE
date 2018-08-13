@@ -30,6 +30,9 @@
         </div>
         <div class="modal-body">
           <mat-dialog-content>
+            <div *ngFor="let song of songs">
+              <p>{{ song.Id }}</p>
+            </div>
             <mat-form-field style="width: 100%">
               <input matInput [(ngModel)]="songAdding.Name" placeholder="Enter Name">
             </mat-form-field>

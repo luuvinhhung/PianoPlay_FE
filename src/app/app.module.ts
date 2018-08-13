@@ -1,3 +1,4 @@
+import { UserGuard } from './core/user-guard.service';
 import { AccountComponent } from './account/account.component';
 import { SongService } from './core/song.service';
 import { NotationService } from './notation/notation.service';
@@ -30,6 +31,9 @@ import { RemoveAccountComponent } from './remove-account/remove-account.componen
 import { EditAccountComponent } from './edit-account/edit-account.component';
 import { SongComponent } from './song/song.component';
 import { RemoveSongComponent } from './remove-song/remove-song.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { GuideComponent } from './guide/guide.component';
+import { AdminGuard } from './core/admin-guard.service';
 
 @NgModule({
   declarations: [
@@ -47,6 +51,7 @@ import { RemoveSongComponent } from './remove-song/remove-song.component';
     EditAccountComponent,
     SongComponent,
     RemoveSongComponent,
+    GuideComponent,
     SafePipe
   ],
   imports: [
@@ -58,11 +63,14 @@ import { RemoveSongComponent } from './remove-song/remove-song.component';
     HttpModule,
     MatSelectModule,
     BrowserAnimationsModule,
+    NgxPaginationModule,
     ToastrModule.forRoot(),
     SidebarModule.forRoot()
   ],
   providers: [
-    PianoService, NotationService, SongService, AccountService,
+    AdminGuard, UserGuard,
+    PianoService, NotationService,
+    SongService, AccountService,
     HomeGuard, AuthenticationService],
   bootstrap: [AppComponent],
   entryComponents: [AccountDialogComponent, RemoveSongComponent, RemoveAccountComponent, EditAccountComponent]

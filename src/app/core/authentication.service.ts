@@ -38,25 +38,6 @@ export class AuthenticationService {
                 }
             });
     }
-    // login2(username: string, password: string) {
-    //     return this.http.post('http://localhost:8888/api/accounts/token',
-    //         this.body.toString())
-    //         .pipe(map((response: Response) => {
-    //             // login successful if there's a jwt token in the response
-    //             const token = response.json() && response.json().access_token;
-    //             console.log(response.json());
-    //             if (token) {
-    //                 this.token = token;
-
-    //                 localStorage.setItem('currentUser', this.token);
-    //                 // return true to successful
-    //                 return true;
-    //             } else {
-    //                 // return false to failed
-    //                 return false;
-    //             }
-    //         });
-    // }
 
     logout(): void {
         this.token = null;

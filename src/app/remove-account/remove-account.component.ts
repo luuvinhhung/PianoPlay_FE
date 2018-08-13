@@ -36,7 +36,7 @@ export class RemoveAccountComponent implements OnInit {
       this.songs = song;
       this.chooseSong = song;
     });
-    this.songs = this.chooseSong.filter(em => em.UserId.toLowerCase().includes(this.account.Id.toString()));
+    this.songs = this.chooseSong.filter(em => em.UserId.toLowerCase().includes(this.account.Id.toString().toLowerCase()));
 
     // kiem tra tai khoan ton tai bai hat thi confirm xac nhan xoa
     if (this.songs.length > 0) {

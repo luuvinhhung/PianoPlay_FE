@@ -7,7 +7,7 @@
     (click)="_toggleSidebar()">SIDEBAR
       <i [ngClass]="_opened?'fas fa-arrow-circle-left fa-2x':'fas fa-arrow-circle-right fa-2x'"></i>
     </button>
-    <p [ngClass]="activePlay?'activeP':'noactP'" (click)='play()'>PLAY
+    <p *ngIf="!isAd" [ngClass]="activePlay?'activeP':'noactP'" (click)='play()'>PLAY
       <i class="fas fa-play fa-2x"></i>
     </p>
     <p *ngIf="!isAd" [ngClass]="activeGuide?'activeP':'noactP'" (click)='guide()'>GUIDE
@@ -16,7 +16,7 @@
     <p *ngIf="!isAd"  [ngClass]="activeList?'activeP':'noactP'" (click)='list()'>LIST
       <i class="fas fa-list-ol fa-2x"></i>
     </p>
-    <p *ngIf="isAd" [ngClass]="activeAcc?'activeP':'noactP'" (click)='account()'>ACCOUNT
+    <p *ngIf="isAd" class="activeP" (click)='account()'>ACCOUNT
       <i class="fas fa-user-friends fa-2x"></i>
     </p>
   </ng-sidebar>

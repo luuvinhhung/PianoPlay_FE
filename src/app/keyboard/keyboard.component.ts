@@ -1,8 +1,6 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 
 import { IPianoKey } from './ipiano-key';
-// import { QuizResult }  from '../core/quiz-result';
-// import { QuizService } from '../core/quiz.service';
 
 @Component({
   selector: 'app-keyboard',
@@ -13,7 +11,6 @@ export class KeyboardComponent implements OnInit {
   @Output() keyPlayed = new EventEmitter<number>();
 
   private pianoKeys: IPianoKey[];
-  private highlightedKeyId: Number = 0;
 
   constructor() {
 
@@ -56,12 +53,12 @@ export class KeyboardComponent implements OnInit {
   keyPress(keyNumber: number) {
     this.keyPlayed.emit(keyNumber);
   }
-  getColor(keyId) {
-    if (keyId === this.highlightedKeyId) {
-      return '#f0e68c';
-    } else {
-      return '';
-    }
-  }
+  // getColor(keyId) {
+  //   if (keyId === this.highlightedKeyId) {
+  //     return 'black';
+  //   } else {
+  //     return '';
+  //   }
+  // }
 
 }

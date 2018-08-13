@@ -30,7 +30,6 @@ export class NoteInfoComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // prevent memory leak when component destroyed
     this.subscription.unsubscribe();
   }
 

@@ -12,30 +12,16 @@ declare var $: any;
   templateUrl: './notation.component.html',
   styleUrls: ['./notation.component.css']
 })
-export class NotationComponent implements OnInit, AfterViewChecked  {
+export class NotationComponent implements OnInit {
   subscription: Subscription;
   notationAsSVG: any;
-  noteColor: string[];
 
   constructor(private pianoService: PianoService, private notationService: NotationService) {
     this.subscription = pianoService.notePlayed$.subscribe(note => this.handleNotePlayed(note));
   }
 
   ngOnInit() {
-    // Render the (empty) piano score (will contain hidden notes to ensure staff spans full width)
     this.notationAsSVG = this.notationService.renderNotation();
-    this.noteColor = [];
-  }
-
-  ngAfterViewChecked() {
-    const self = this;
-    $('g.note').off().on('click', function() { self.noteClicked(this.id); });
-
-    for (let i = 0; i < this.noteColor.length; i++) {
-      if (this.noteColor[i]) {
-        $('#' + i).attr('fill', this.noteColor[i], 10);
-      }
-    }
   }
 
   handleNotePlayed(note: PianoNote) {
@@ -49,7 +35,6 @@ export class NotationComponent implements OnInit, AfterViewChecked  {
   }
 
   clear() {
-    this.noteColor.length = 0;
     this.notationService.clear();
     this.notationAsSVG = this.notationService.renderNotation();
   }

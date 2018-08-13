@@ -17,7 +17,7 @@ export class NotationService {
     this.notes = [];
     this.vrvToolkit = new verovio.toolkit();
 
-    // create hidden notes to ensure the staff is drawn full width. Notes are hidden via css.
+    // tao phim an de dam bao do dai khung.
     for (let i = 0; i < this.maxNotes; i++) {
       this.spacingNotesXml.push(`<note xml:id="rest-hidden-${i.toString()}" dur="4" oct="6" pname="c" stem.dir="up" />`);
     }

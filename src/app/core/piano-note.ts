@@ -1,21 +1,21 @@
 export class PianoNote {
-  readonly octave: number;
-  readonly name: string;
-  readonly accidental?: string;  // f | s
-  readonly fullname: string;
-  sender?: string; // optional
+  octave: number;
+  name: string;
+  accidental?: string;  // f | s
+  fullname: string;
 
-  constructor (readonly keyId: number, readonly noteId: string) {
+  constructor(public keyId: number, public noteId: string) {
 
     if (keyId < 16 || keyId > 64) {
       throw new RangeError('Invalid keyId. The valid range of keyId is 16 to 64.');
     }
 
-    if (noteId.length < 2 || noteId.length > 3 ) {
+    if (noteId.length < 2 || noteId.length > 3) {
       throw new RangeError('noteId is invalid');
     }
 
     this.name = noteId[0].toLowerCase();
+    // thu cua quang tam
     this.octave = parseInt(noteId[1], 10);
 
     let accidentalSymbol = '';

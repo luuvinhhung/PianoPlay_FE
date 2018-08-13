@@ -52,7 +52,7 @@ export class MainComponent implements OnInit {
     this._docked = !this._docked;
   }
   guide() {
-    // this.route.navigate(['/home/']);
+    this.route.navigate(['/home/guide']);
     this.activeGuide = true;
     this.activePlay = this.activeList = this.activeAcc = false;
   }

@@ -1,3 +1,5 @@
+import { AdminGuard } from './core/admin-guard.service';
+import { GuideComponent } from './guide/guide.component';
 import { PlayComponent } from './play/play.component';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -7,6 +9,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeGuard } from './core/home-guard.service';
 import { AccountComponent } from './account/account.component';
 import { SongComponent } from './song/song.component';
+import { UserGuard } from './core/user-guard.service';
 
 
 const routes: Routes = [
@@ -25,10 +28,13 @@ const routes: Routes = [
                 path: 'play', component: PlayComponent
             },
             {
-                path: 'songs', component: SongComponent
+                path: 'songs', component: SongComponent, canActivate: [UserGuard]
             },
             {
-                path: 'accounts', component: AccountComponent
+                path: 'accounts', component: AccountComponent, canActivate: [AdminGuard]
+            },
+            {
+                path: 'guide', component: GuideComponent
             }
         ]
     }

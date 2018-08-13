@@ -33,7 +33,7 @@
         </div>
     </div>
     <!-- column data -->
-    <div class="container main" *ngFor="let song of songs">
+    <div class="container main" *ngFor="let song of songs | paginate: { itemsPerPage: 3, currentPage: p }">
         <div class="row">
             <div class="col-md-1">{{ song.Id }}</div>
             <div class="col-md-4">{{ song.Name | uppercase }}<button class="editBtn" (click)="songEditChoose(song)" data-toggle="modal" data-target="#mySaveModal"><i class="fas fa-edit"></i></button></div>
@@ -52,21 +52,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-7">
-            <ul class="pagination">
-                <li class="page-item">
-                    <button *ngIf="page !== 1" class="page-link" (click)="changePage(-1)">Previous</button>
-                    <button *ngIf="page === 1" disabled class="page-link">Previous</button>
-                </li>
-
-                <li class="page-item">
-                    <button *ngIf="!disableNextPageBtn" class="page-link" (click)="changePage(1)">Next</button>
-                    <button *ngIf="disableNextPageBtn" disabled class="page-link">Next</button>
-                </li>
-            </ul>
-        </div>
-    </div>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
     <div id="mySaveModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
               <!-- Modal content-->

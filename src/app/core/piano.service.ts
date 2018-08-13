@@ -86,7 +86,7 @@ export class PianoService {
 
   getNoteByKeyId(keyId: number): PianoNote {
     if (this.pianoKeyMap.hasOwnProperty(keyId)) {
-      const noteId = this.pianoKeyMap[keyId][0]; // note dau = key dau
+      const noteId = this.pianoKeyMap[keyId][0];
       return new PianoNote(keyId, noteId);
     } else {
       throw new Error('Invalid keyId. The valid range of keyId is 16 to 64.');
@@ -116,6 +116,7 @@ export class PianoService {
     const notes = this.pianoKeyMap[keyId];
 
     if (notes.length > 1) {
+      // check noteId vao co gia tri khac
       if (notes[0] === noteId) {
         alternateNote = new PianoNote(keyId, notes[1]);
       } else {
@@ -130,20 +131,20 @@ export class PianoService {
     return Object.keys(this.pianoNoteMap);
   }
 
-  getAllNaturalNoteIds(lowerOctave: number = 2, upperOctave = 6): string[] {
-    const naturalNotes: string[] = [];
+  // getAllNaturalNoteIds(lowerOctave: number = 2, upperOctave = 6): string[] {
+  //   const naturalNotes: string[] = [];
 
-    Object.keys(this.pianoNoteMap).forEach( note => {
-      if (note.length === 2) {
-        const n = parseInt( note[1], 10 );
-        if (n >= lowerOctave && n <= upperOctave) {
-        naturalNotes.push(note);
-        }
-      }
-    });
+  //   Object.keys(this.pianoNoteMap).forEach( note => {
+  //     if (note.length === 2) {
+  //       const n = parseInt( note[1], 10 );
+  //       if (n >= lowerOctave && n <= upperOctave) {
+  //       naturalNotes.push(note);
+  //       }
+  //     }
+  //   });
 
-    return naturalNotes;
-  }
+  //   return naturalNotes;
+  // }
   playNoteSound(keyId: number): void {
     const audio = new Audio();
     if (keyId < 16 || keyId > 64) {
